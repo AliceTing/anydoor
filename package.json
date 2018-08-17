@@ -1,0 +1,25 @@
+{
+  "name": "anydoor",
+  "version": "1.0.0",
+  "description": "a nodejs static server",
+  "main": ".eslintrc.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "chalk": "^2.4.1",
+    "eslint": "^5.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliceTing/anydoor.git"
+  },
+  "author": "yuting",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliceTing/anydoor/issues"
+  },
+  "homepage": "https://github.com/AliceTing/anydoor#readme"
+}
