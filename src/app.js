@@ -2,7 +2,7 @@ const http = require('http');
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
-const promisify = require('util').promisify;
+// const promisify = require('util').promisify;
 const conf = require('./config/defaultConfig.js');
 
 const server = http.createServer((req, res) =>{
