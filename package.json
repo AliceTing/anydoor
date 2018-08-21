@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "a nodejs static server",
   "main": ".eslintrc.js",
-  "dependencies": {},
+  "dependencies": {
+    "handlebars": "^4.0.11"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "chalk": "^2.4.1",
