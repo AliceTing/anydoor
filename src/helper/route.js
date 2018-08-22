@@ -6,6 +6,7 @@ const stat = promisify(fs.stat);
 const readdir = promisify(fs.readdir);
 const config = require('../config/defaultConfig');
 const mime = require('./mime');
+const compress = require('./compress');
 
 const tplPath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(tplPath);
@@ -17,8 +18,12 @@ module.exports = async function (req, res, filePath) {
         if (stats.isFile()) {
             const contentType = mime(filePath);
             res.statusCode = 200;
-            res.setHeader('Content-Type', contentType);
-            fs.createReadStream(filePath).pipe(res);
+            res.setHeader('Content-Type', contentType.text);
+            let rs = fs.createReadStream(filePath);
+            if (filePath.match(config.compress)) {
+                rs = compress(rs, req, res);
+            }
+            rs.pipe(res);
         } else if (stats.isDirectory()) {
             const files = await readdir(filePath);
             res.statusCode = 200;
@@ -30,11 +35,10 @@ module.exports = async function (req, res, filePath) {
                 files: files.map(file => {
                     return {
                         file,
-                        icon: mime(file)
-                    }
+                        icon: mime(file).icon
+                    };
                 })
             };
-            console.log(data.files[0].icon.icon)
             res.end(template(data));
         }
     } catch (error) {
